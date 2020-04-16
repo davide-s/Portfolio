@@ -213,7 +213,7 @@ def login():
 
     scope = 'user-library-read playlist-modify-public playlist-read-private'
 
-    redirect_uri='https://www.google.it/' # Paste your Redirect URI here
+    redirect_uri='https://www.google.it/'
 
     client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret) 
 
@@ -461,7 +461,7 @@ plt.show()
     
     #Define the set of features that we want to look at
     features = ["danceability", "loudness", "valence", "energy", "acousticness","speechiness", "tempo"]
-    #Split the data into x and y test and train sets to feed them into a bunch of classifiers!
+    #Split the data into x and y test and train sets to feed them into a bunch of classifiers
     x_train = train[features]
     y_train = train["target"]
 
