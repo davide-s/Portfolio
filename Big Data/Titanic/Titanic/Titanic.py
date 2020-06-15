@@ -108,3 +108,27 @@ titanic_dmy[0:5]
 sb.heatmap(titanic_dmy.corr())
 titanic_dmy.drop(['Fare', 'Pclass'], axis=1, inplace=True)
 titanic_dmy.head()
+
+#Check the dataset size is sufficient
+titanic_dmy.info()
+
+x_train, x_test, y_train, y_test = train_test_split(titanic_dmy.drop('Survived', axis=1),titanic_dmy['Survived'],
+                                                    test_size=0.2, random_state=200)
+
+print(x_train.shape)
+print(y_train.shape)
+
+#deploying and evalutating the model
+LogReg = LogisticRegression(solver='liblinear')
+LogReg.fit(x_train, y_train)
+
+y_pred = LogReg.predict(x_test)
+
+#model evaluation
+print(classification_report(y_test, y_pred))
+
+y_train_pred = cross_val_predict(LogReg, x_train, y_train, cv=5)
+print(confusion_matrix(y_train, y_train_pred))
+
+print(precision_score(y_train, y_train_pred))
+
